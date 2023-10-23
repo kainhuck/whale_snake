@@ -93,7 +93,6 @@ func (g *Game) collidesSelf() bool {
 }
 
 func (g *Game) reset() {
-	g.moveDir = dirNone
 	g.snakeBody = []PositionWithColor{{
 		p: Position{X: 6, Y: 8},
 		c: color.RGBA{
@@ -233,7 +232,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		vector.DrawFilledRect(screen, float32(v.p.X*gridSize), float32(v.p.Y*gridSize), float32(gridSize), float32(gridSize), v.c, false)
 	}
 
-	vector.DrawFilledRect(screen, float32(g.apple.p.X*gridSize), float32(g.apple.p.Y*gridSize), float32(gridSize), float32(gridSize), g.apple.c, false)
+	vector.DrawFilledCircle(screen, float32(g.apple.p.X*gridSize)+float32(gridSize)/2, float32(g.apple.p.Y*gridSize)+float32(gridSize)/2, float32(gridSize)/2, g.apple.c, true)
 
 	if !g.finished {
 		if g.stop {
